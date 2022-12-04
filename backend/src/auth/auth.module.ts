@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './auth.service';
@@ -14,7 +15,7 @@ import { AuthController } from './auth.controller';
     JwtModule.registerAsync({
       imports: [],
       useFactory: async () => ({
-        secret: 'jwt_secret',
+        secret: process.env.JWT_SECRET,
       }),
       inject: [],
     }),

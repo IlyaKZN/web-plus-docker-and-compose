@@ -18,9 +18,10 @@ WORKDIR /app
 # RUN npm i --omit=dev
 # RUN npm i -g pm2
 # Копируем директорию со сборкой приложения
-COPY --from=builder /app/nginx/conf.d/default.conf ./etc/nginx/conf.d/
-COPY --from=builder /app/build ./build/
-
+COPY --from=builder /app/build ./usr/share/nginx/html
+COPY /nginx/conf.d/default.conf ./etc/nginx/conf.d
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
 # Указываем команду для запуска приложения
 # EXPOSE 4000
 # CMD ["sh"] 

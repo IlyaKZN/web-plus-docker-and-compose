@@ -1,3 +1,9 @@
+networks:
+  internal-network:
+    driver: bridge
+    internal: true
+  internet:
+    driver: bridge
 services:
   postgres:
     image: postgres:13
@@ -23,6 +29,8 @@ services:
     env_file:
       - ./backend/.env
   frontend:
+    depends_on:
+      - backend
     build: 
       context: ./frontend
       dockerfile: Dockerfile

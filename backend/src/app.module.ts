@@ -13,14 +13,14 @@ import { WishList } from './wishlists/entities/wishlist.entity';
 import { AuthModule } from './auth/auth.module';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const dotenv = require('dotenv');
-dotenv.config({ path: __dirname + '/../.env' });
+dotenv.config({ path: __dirname + '/.env' });
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: `${process.env.POSTGRES_HOST}`,
-      port: 5432,
+      port: +`${process.env.POSTGRES_PORT}`,
       username: `${process.env.POSTGRES_USER}`,
       password: `${process.env.POSTGRES_PASSWORD}`,
       database: `${process.env.POSTGRES_DB}`,
